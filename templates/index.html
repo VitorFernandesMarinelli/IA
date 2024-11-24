@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='perfumaria.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="left-box"></div>
+        <div class="right-box">
+            <div id="translation" class="translation">{{ translation }}</div>
+            <div id="transcricao" class="transcription">{{ transcricao }}</div>
+            <div class="controls">
+                <select id="language" class="language">
+                    <option value="pt">Português</option>
+                    <option value="en">Inglês (English)</option>
+                    <option value="ru">Russo (Русский)</option>
+                    <option value="ja">Japonês (日本語)</option>
+                    <option value="zh">Chinês (中國人)</option>
+                    <option value="it">Italiano</option>
+                    <option value="gn">Guarani</option>
+                    <option value="es">Espanhol (Español)</option>
+                    <option value="fr">Francês (Français)</option>
+                </select>
+                <button class="start-stop" onclick="enviarLinguagem()">Iniciar/parar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicionando o plugin VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+    <script>
+        window.addEventListener('load', function() {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
